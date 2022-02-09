@@ -45,21 +45,25 @@ sigVec2 = crcbgenltcsig(timeVec2,A,[ta,f0,f1,phi0,L]);
 sigVec3 = crcbgenltcsig(timeVec3,A,[ta,f0,f1,phi0,L]);
 
 %Plot the signal
-figure;
+p1 = figure;
 plot(timeVec1,sigVec1,'Marker','.','MarkerSize',8);
 title('Linear transient chirp signal(fs=NyquistFrequency)');
 xlabel('Time');
 ylabel('Amplitude');
-figure;
+print(p1,'-djpeg','Linear transient chirp signal(fs=NyquistFrequency).jpg');
+% another way to save picture:saveas(gcf, 'Linear transient chirp signal(fs=NyquistFrequency).jpg') 
+p2 = figure;
 plot(timeVec2,sigVec2,'Marker','.','MarkerSize',8);
 title('Linear transient chirp signal(fs=5*NyquistFrequency)');
 xlabel('Time');
 ylabel('Amplitude');
-figure;
+print(p2,'-djpeg','Linear transient chirp signal(fs=5NyquistFrequency).jpg');
+p3 = figure;
 plot(timeVec3,sigVec3,'Marker','.','MarkerSize',8);
 title('Linear transient chirp signal(fs=0.5*NyquistFrequency)');
 xlabel('Time');
 ylabel('Amplitude');
+print(p3,'-djpeg','Linear transient chirp signal(fs=0.5NyquistFrequency).jpg');
 
 %Plot the periodogram
 %--------------
@@ -85,24 +89,27 @@ fftSig2 = fftSig2(1:kNyq2);
 fftSig3 = fftSig3(1:kNyq3);
 
 %Plot periodogram
-figure;
+p4 = figure;
 plot(posFreq1,abs(fftSig1));
 xlim([0,30]);
 title('Periodogram(fs=NyquistFrequency)');
 xlabel('Frequency(Hz)');
 ylabel('Amplitude');
-figure;
+print(p4,'-djpeg','Periodogram(fs=NyquistFrequency).jpg');
+p5 = figure;
 plot(posFreq2,abs(fftSig2));
 xlim([0,30]);
 title('Periodogram(fs=5*NyquistFrequency)');
 xlabel('Frequency(Hz)');
 ylabel('Amplitude');
-figure;
+print(p5,'-djpeg','Periodogram(fs=5NyquistFrequency).jpg');
+p6 = figure;
 plot(posFreq3,abs(fftSig3));
 xlim([0,30]);
 title('Periodogram(fs=0.5*NyquistFrequency)');
 xlabel('Frequency(Hz)');
 ylabel('Amplitude');
+print(p6,'-djpeg','Periodogram(fs=0.5NyquistFrequency).jpg');
 
 %Plot a spectrogram
 %----------------
@@ -112,28 +119,29 @@ ovrlp = 0.1;%sec
 winLenSmpls1 = floor(winLen*samplFreq1);
 ovrlpSmpls1 = floor(ovrlp*samplFreq1);
 [S1,F1,T1]=spectrogram(sigVec1,winLenSmpls1,ovrlpSmpls1,[],samplFreq1);
-figure;
+p7 = figure;
 imagesc(T1,F1,abs(S1)); axis xy;
 xlabel('Time (sec)');
 ylabel('Frequency (Hz)');
 title('Spectrogram(fs=NyquistFrequency)');
+print(p7,'-djpeg','Spectrogram(fs=NyquistFrequency).jpg');
 %2.Convert to integer number of samples(fs=5*NyquistFrequency) 
 winLenSmpls2 = floor(winLen*samplFreq2);
 ovrlpSmpls2 = floor(ovrlp*samplFreq2);
 [S2,F2,T2]=spectrogram(sigVec2,winLenSmpls2,ovrlpSmpls2,[],samplFreq2);
-figure;
+p8 = figure;
 imagesc(T2,F2,abs(S2)); axis xy;
 xlabel('Time (sec)');
 ylabel('Frequency (Hz)');
 title('Spectrogram(fs=5*NyquistFrequency)');
+print(p8,'-djpeg','Spectrogram(fs=5NyquistFrequency).jpg');
 %3.Convert to integer number of samples(fs=0.5*NyquistFrequency) 
 winLenSmpls3 = floor(winLen*samplFreq3);
 ovrlpSmpls3 = floor(ovrlp*samplFreq3);
 [S3,F3,T3]=spectrogram(sigVec3,winLenSmpls3,ovrlpSmpls3,[],samplFreq3);
-figure;
+p9 = figure;
 imagesc(T3,F3,abs(S3)); axis xy;
 xlabel('Time (sec)');
 ylabel('Frequency (Hz)');
 title('Spectrogram(fs=0.5*NyquistFrequency)');
-
-
+print(p9,'-djpeg','Spectrogram(fs=0.5NyquistFrequency).jpg');
