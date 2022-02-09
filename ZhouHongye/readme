@@ -1,1 +1,11 @@
 The Topic labs of ZhouHongye
+
+Topic1:
+(1)Generating two types of signal(FM and AM signal) and plot time/frequency/time-frequency domain pictures
+(2)Design filter to seperate different signal elements
+crcbgenFMsig.m --generate FM signal
+crcbgenAMsig.m --generate AM signal
+crcbgenMIX3sig.m --generate signal mixed by 3 elements with different frequency
+testcrcbgenFMsig.mlx --Plot pictures in different domain of FM signal
+testcrcbgenAMsig.mlx --Plot pictures in different domain of AM signal
+mixsigfilter.m --realize the filter with the function 'fir1'
