@@ -1,1 +1,17 @@
-topic 2
+## Topic 2
+*main: test_topic2
+
+
+##感激
+感谢以下的机构和老师,排名不分先后
+
+* [兰州大学]
+* [Mohanty教授]
+* [小组成员]
+##关于作者
+
+```javascript
+var ihubo = {
+  nickName  : "luochunlin",
+}
+```
