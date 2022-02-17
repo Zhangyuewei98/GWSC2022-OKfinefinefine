@@ -89,7 +89,7 @@ end
 %Obtain LLR for multiple data (=signal+noise) realizations
 nH1Data = 1000;
 llrH1 = zeros(1,nH1Data);
-for lp = 1:nH0Data
+for lp = 1:nH1Data
     noiseVec = statgaussnoisegen(nSamples,[posFreq(:),LIGOpsdPosFreq(:)],100,sampFreq);
     % Add normalized signal
     dataVec = noiseVec + sigVec;
