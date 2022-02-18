@@ -1,9 +1,9 @@
 clc;clear;close all;
 
 %% Load noise and analysis data
-noise = load("TrainingDataTF.mat");
+noise = load("TrainingData.mat");
 noiseVec = noise.trainData;
-data = load("analysisDataTF.mat");
+data = load("analysisData.mat");
 dataVec = data.dataVec;
 
 %% Parameters for data realization
@@ -15,6 +15,7 @@ timeVec = (0:(nSamples-1))/sampFreq;
 
 %% Estimate power spectral density
 [psdPosFreq, posFreq] = pwelch(noiseVec,nSamples,[],[],sampFreq);
+psdPosFreq = psdPosFreq / 2;
 psdPosFreq = psdPosFreq';
 posFreq = posFreq';
 figure;
@@ -82,7 +83,7 @@ disp("significance = " + significance);
 
 %% Calculate SNR
 estSNR = (mean(llrH1_Vec)-mean(llrH0_Vec))/std(llrH0_Vec);
-ActualParams = load("keyFileTF.mat");
+ActualParams = load("keyFile.mat");
 snr = ActualParams.snr;
 disp("Targeted SNR = " + snr);
 disp("Estimated SNR =" + estSNR);
